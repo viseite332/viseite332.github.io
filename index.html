@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Fingerprint Test</title>
+</head>
+<body>
+  <h1>Fingerprint Testside</h1>
+  <p>Visitor ID: <span id="visitorId">Henter...</span></p>
+
+  <script type="module">
+    const fpPromise = import('https://fpjscdn.net/v3/ZZFYiRw2Rbd30yRSoOld')
+      .then(FingerprintJS => FingerprintJS.load());
+
+    fpPromise
+      .then(fp => fp.get())
+      .then(result => {
+        document.getElementById("visitorId").textContent = result.visitorId;
+        console.log(result);
+      });
+  </script>
+</body>
+</html>
